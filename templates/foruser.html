@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Forgot username</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                color: #333;
+                margin: 10%;
+                padding: 0;
+            }
+            h1 {
+                color: #007bff;
+            }
+            form {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                width: 300px;
+                margin: 0 auto;
+            }
+            label {
+                display: inline-block;
+                width: 100px;
+                margin-bottom: 10px;
+                color: #555;
+            }
+            input, select {
+                width: 180px;
+                padding: 8px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            button {
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #0056b3;
+            }
+        </style>
+    </head>
+    <body style="text-align:center;">
+        <div>
+            <form action="/foruser" method="post">
+            {% csrf_token %}
+                <label>Registered Email</label>
+                <input type="email" id="email" name="email" placeholder="email" Required><br><br>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+        {% if success %}
+        <p>Email containing your username has been sent.</p>
+        {% endif %}
+        {% if error %}
+            <p>{{ error }}</p>
+        {% endif %}
+        <script src="" async defer></script>
+    </body>
+</html>

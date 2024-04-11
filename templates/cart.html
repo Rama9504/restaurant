@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cart</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="\static\menu.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+        <style>
+          table {
+            border-collapse: collapse;
+            width: 100%;
+          }
+          
+          tr {
+            border-bottom: 1px solid #ddd;
+          }
+          .class2899{
+            margin-top:15%;
+            text-align:center;
+            color:green;
+            font-family:verdana;
+          }
+        </style>
+    </head>
+    <body style="background-color:lightgreen;">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li style="margin-top:8px;" class="nav-item" >
+                        <a style="color: #ffffff; font-family:verdana;" class="nav-link" href="/menu">
+                          <div class="cart-wrapper">
+                            <span class="cart-label">HOME</span>
+                          </div>
+                        </a>
+                      </li>
+                      <li style="margin-top:8px;" class="nav-item">
+                        <a style="color: #ffffff; font-family:verdana;" class="nav-link" href="/profile">
+                          <div class="cart-wrapper">
+                            <span class="cart-label">PROFILE</span>
+                          </div>
+                        </a>
+                      </li>
+                      <li style="background-color:black; border-radius:20px;" class="nav-item">
+                        <a style="color: #ffffff; font-family:verdana;" class="nav-link" href="/cart">
+                          <div class="cart-wrapper">
+                            <span class="cart-label">CART</span>
+                            <p style="margin-top:0.1px;" class="quantity class140">{{q}}</p>
+                          </div>
+                        </a>
+                      </li>
+                      <li style="margin-top:8px;" class="nav-item">
+                        <a style="color: #ffffff; font-family:verdana;" class="nav-link" href={% url "sapp:orderstatus" %}>
+                          <div class="cart-wrapper">
+                            <span class="cart-label">CURRENT ORDERS</span>
+                          </div>
+                        </a>
+                      </li>
+                      {% if locc is none %}
+                      <li style="margin-top:8px;" class="nav-item">
+                        <a style="color: orange; font-family:verdana;" class="nav-link" href={% url "sapp:address" %}>
+                          <div class="cart-wrapper">
+                            <span class="cart-label">ADDRESS</span>
+                          </div>
+                        </a>
+                      </li>
+                      {% endif %}
+                    </ul>            
+                </div>
+            </div>
+        </nav><br><br><br>
+        {% if cart_item %}
+        <div style="width:50%; margin-left:25%; margin-top:5%;" class="class1">
+            <div style="background-color:grey;" class="class2 card">
+                <h1 style="font-family:verdana">CART</h1><hr><br>
+                {% load static %}
+                <table>
+                  <tr>
+                    <th><b style="font-family:verdana;">Dish</b></th>
+                    <th><b style="font-family:verdana;">Quantity</b></th>
+                    <th><b style="font-family:verdana;">price</b></th>
+                    <th><b style="font-family:verdana;">Discount</b></th>
+                    <th><b style="font-family:verdana;">Final Price</b></th>
+                  </tr>
+                  {% for car in cart_item %}
+                  <tr>
+                    <td><b style="font-family:verdana;">{{car.dish_codese}}</b></td>
+                    <td style="background-color:orange; width:40px; border-radius:5px;"><a href="{% url 'sapp:minus' car.dish_codese %}"><button style="background-color:orange; color:blue; border:none;"><b><b>-</b></b></button></a> <b>{{car.quantity}}<b> <a href="{% url 'sapp:add' car.dish_codese %}"><button onclick="add();" style="background-color:orange; color:blue; border:none;"><b><b>+</b></b></button></a></td>
+                    <td><b style="font-family:verdana;">{{car.price}}</b></td>
+                    <td><b style="font-family:verdana;">{{car.discount}}</b></td>
+                    <td><b style="font-family:verdana;">{{car.finalprice}}</b></td>
+                  </tr>
+                  {% endfor %}
+                </table><br>
+                <p><b>Total Price: {{total_price}}</b></p>
+                {% if p is False %}
+                  {% if locc %}
+                    <h6>Your address</h6>
+                    <b><p style="background-color:white; font-family:verdana; border-color:gery;">{{locc.streetname}},{{locc.villagecity}},{{locc.state}},{{locc.country}},{{locc.pincode}}</p></b>
+                    <a href="{% url 'sapp:address2' %}"><button class="add-cart class12" type="submit">Change address</button></a><br>
+                  {% endif %}
+                  <form action="{% url 'sapp:place_order' %}" method="post">
+                    {% csrf_token %}
+                    <button class="add-cart class12" type="submit">Place Order</button>
+                  </form><br>
+                {% endif %}
+                {% if p %}
+                  <div class="class2899">
+                    <b>You can't order at the moment as one of your orders haven't been delivered yet......</b><br>
+                  </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+        {% if not cart_item %}
+        <div class="class2899">
+          <b>You don't have any dishes in the cart......</b>
+        </div>
+        {% endif %}
+        <script src="" async defer></script>
+    </body>
+</html>
+
+

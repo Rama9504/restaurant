@@ -1,0 +1,20 @@
+.class1{
+    background-color: #7d2629;
+    text-align:center;
+    margin-top:10%;
+    margin-left: 33%;
+}
+
+.class3{
+    width:50%;
+    text-align:center;
+    border-radius: 10px;
+    border-color: black;
+    background-color: rgb(85, 85, 176);
+}
+
+.class2{
+    text-align: center;
+    border:red;
+    border-radius: 10px;
+}

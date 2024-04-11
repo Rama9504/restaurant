@@ -1,0 +1,41 @@
+class Dict2:
+    def __init__(self):
+        self.items = []
+
+    def __setitem__(self, key, value):
+        for item in self.items:
+            if item[0] == key:
+                item[1] = value
+                return
+        self.items.append([key, value])
+
+    def __getitem__(self, key):
+        for item in self.items:
+            if item[0] == key:
+                return item[1]
+        raise KeyError(f"Key '{key}' not found")
+
+    def __iter__(self):
+        return iter([item[0] for item in self.items])
+
+
+if __name__ == "__main__":
+    # Test case for storing key-value pairs
+    obj = Dict2()
+    obj['a'] = 1
+    obj['b'] = 2
+    obj['c'] = 3
+
+    # Test case for accessing values based on keys
+    val = obj['a']
+    print(val)
+
+    # Test case for custom exception when key doesn't exist
+    try:
+        val = obj['d']
+    except KeyError as e:
+        print(e)
+
+    # Test case for using in a for loop to get keys
+    for k in obj:
+        print(f'key: {k}')

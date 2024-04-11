@@ -1,0 +1,145 @@
+{% comment %} <!DOCTYPE html> {% endcomment %}
+{% comment %} <html> {% endcomment %}
+{% comment %} <head> {% endcomment %}
+    {% comment %} <title>Signup</title> {% endcomment %}
+    {% comment %} {% load static %} {% endcomment %}
+    {% comment %} <link rel="stylesheet" href="{% static 'signup.css' %}"> {% endcomment %}
+{% comment %} </head> {% endcomment %}
+{% comment %}  {% endcomment %}
+{% comment %} <body style="background-image:url('/static/swiggyback3.jpg')"> {% endcomment %}
+    {% comment %} <h3 class="class3">Signup</h3> {% endcomment %}
+    {% comment %} <div class="class1"> {% endcomment %}
+        {% comment %} <div class="class2"> {% endcomment %}
+            {% comment %} <form method="post" action="{% url 'signup' %}"> {% endcomment %}
+                {% comment %} {% csrf_token %} {% endcomment %}
+                {% comment %} <label for="email">Email:</label> {% endcomment %}
+                {% comment %} <input type="email" id="email" name="email" required><br> {% endcomment %}
+            {% comment %}  {% endcomment %}
+                {% comment %} <label for="username">Username:</label> {% endcomment %}
+                {% comment %} <input type="text" id="username" name="username" required><br> {% endcomment %}
+            {% comment %}  {% endcomment %}
+                {% comment %} <label for="password">Password:</label> {% endcomment %}
+                {% comment %} <input type="password" id="password" name="password" required><br> {% endcomment %}
+            {% comment %}  {% endcomment %}
+                {% comment %} <label for="confirm_password">Confirm Password:</label> {% endcomment %}
+                {% comment %} <input type="password" id="confirm_password" name="confirm_password" required><br> {% endcomment %}
+            {% comment %}  {% endcomment %}
+                {% comment %} <button id="locationButton">Get Location</button> {% endcomment %}
+            {% comment %}  {% endcomment %}
+                {% comment %} <input type="hidden" id="location" name="location"> {% endcomment %}
+            {% comment %}  {% endcomment %}
+                {% comment %} <input type="submit" value="Sign Up"> {% endcomment %}
+            {% comment %} </form> {% endcomment %}
+        {% comment %} </div>     {% endcomment %}
+    {% comment %} </div>     {% endcomment %}
+{% comment %} </body> {% endcomment %}
+{% comment %} </html> {% endcomment %}
+
+<!--<!Doctype html>
+<html>
+<title>signin form</title>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'signupcss.css' %}">
+</head>
+
+<body>
+    {% for message in messages%}
+    <div class="alert alert-{{message.tags}} alert-dissmissable fade show" role="alert">
+    <strong>messege:</strong>{{message}}
+    <button type="button" class="close" data-dismiss="alert"aria-label="close">
+    <span aria-hidden="true">&times;"</span>
+    </button>
+    </div>
+    {% endfor %}
+    <form class="class2" action="/signin" method="post">
+    {% csrf_token %}
+        <h1 class="class3">Sign In</h1>
+        <div class="class5">
+            <label for="username">username:</label>
+            <input class="class6" type="text" name="username" placeholder="username"><br><br>
+            <label for=" ">password:</label>
+            <input class="class4" id="pass" type="password" name="password" placeholder="password"><br><br> 
+            <input class="class" type="submit" name="login" value="Sign In"><br><br>
+            <p>Don't have an account?  <a href="/signup">SignUp</a></p>
+        </div>
+    </form>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sign In</title>
+        <style>
+            body{
+                background-attachment: scroll;
+                background-size: 100%;
+                background-image: url(/static/signup_background.jpg);
+            }
+            .class1{
+                margin-left:auto;
+                margin-right:auto;
+            }
+            .class2{
+                background-color:grey;
+                opacity:1.0;
+                width:350px;
+                text-align:center;
+                margin-left:auto;
+                margin-right:auto;
+            }
+            .class3{
+                text-align:center;
+                margin-top:200px;
+            }
+            .class4{
+                text-decoration:none;
+                color:white;
+                text:bold;
+            }
+            .class5{
+                height:35px;
+                width:300px;
+                border-radius:5px;
+            }
+            button {
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #0056b3;
+            }
+        </style>
+    </head>
+    <body>  
+        <div class="class1">
+            <div class="class2">
+                <h1 class="class3">SIGN IN</h1>
+                {% for message in messages%}
+                <div class="alert alert-{{message.tags}} alert-dissmissable fade show" role="alert">
+                <strong>messege:</strong>{{message}}
+                </div>
+                {% endfor %}
+            <form action="/signin" method="post">
+            {% csrf_token %}
+                <br><br>
+                <label for="">USERNAME</label><br>
+                <input class="class5" type="text"id="username" name="username" placeholder="username"><br><br>       
+                <label for="">PASSWORD</label><br>
+                <input class="class5" type="password"id="password" name="password" placeholder="password"><br><br>
+                <button type="submit">signin</button><br><br>
+            </form>
+            <a style="text-decoration:none;" href="/foruser">Forgot username?<a><br><br>
+            <a style="text-decoration:none;" href="/forget">Forgot password?<a>
+            <p>Doesn't have an account?  <a class="class4" style="color:blue;" href="/signup">Sign Up</a></p><br>
+            </div>
+        </div>
+    </body>
+</html>

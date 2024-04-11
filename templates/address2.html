@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Address</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #007bff;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 0 auto;
+        }
+        label {
+            display: inline-block;
+            width: 100px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        input, select {
+            width: 180px;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body style="text-align:center;">
+    <div style="margin-top:8%;">
+        <h2>Location</h2>
+        <form action="/address2" method="post">
+        {% csrf_token %}
+            <p>We have your address details. You can change them if you want.</p><br> 
+            <label for="id_streetname">Street Name:</label>
+            <input type="text" name="streetname" id="id_streetname" value="{{ locc.streetname }}"><br><br>
+            <label for="id_villagecity">Village/City:</label>
+            <input type="text" name="villagecity" id="id_villagecity" value="{{ locc.villagecity }}"><br><br>
+            <label for="id_pincode">Pincode:</label>
+            <input type="number" name="pincode" id="id_pincode" value="{{ locc.pincode }}"><br><br>
+            <label for="id_state">State:</label>
+            <input type="text" name="state" id="id_state" value="{{ locc.state }}"><br><br>
+            <label for="id_country">Country:</label>
+            <input type="text" name="country" id="id_country" value="{{ locc.country }}"><br><br>
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+    <script src="" async defer></script>
+</body>
+</html>

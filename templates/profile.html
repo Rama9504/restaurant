@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="\static\menu.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <style>
+      .card {
+        box-shadow: 0 20px 40px 0 rgba(0,0,0,0.8);
+        transition: 0.1s;
+        width: 100%;
+        background-color:grey;
+      }
+      .dish, .quantity, .date, .price, .review{
+        font-family: Arial, sans-serif; /* Change font family as needed */
+        margin-left: auto;
+        margin-right:auto;
+        margin-bottom: 10px;
+      }    
+      .modal {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 50;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+      }    
+      .modal-content {
+        background-color: #667292;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 400px;
+        margin: 6% auto;
+      }
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .close:hover,
+      .close:focus {
+          color: black;
+          text-decoration: none;
+          cursor: pointer;
+      }
+      form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      label {
+          font-weight: bold;
+      }
+      input[type="text"],
+      input[type="number"]
+      {
+          width: 100%;
+          padding: 10px;
+          margin: 5px 0;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+      }
+      textarea{
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      input[type="submit"] {
+          background-color: #4CAF50;
+          color: white;
+          padding: 15px 20px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 16px;
+      }
+      input[type="submit"]:hover {
+          background-color: #45a049;
+      }
+      .form-containers {
+        max-width: 500px;
+        margin: 0 auto;
+        margin-top:8%;
+        height: 75%; /* Set height according to your preference */
+        overflow: auto; /* Add scrolling */
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      }  
+      .radio-container {
+        padding:25px;
+        margin-left:auto;
+        justify-content:gap;
+        display: inline-block;
+      }
+      .radio-container input{
+        gap:10px;
+      }
+    </style>
+</head>
+<body style="background-color:lightgreen;">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li style="margin-top:8px;" class="nav-item" >
+            <a style="color: #ffffff; font-family:verdana;" class="nav-link" href="/menu">
+              <div class="cart-wrapper">
+                <span class="cart-label">HOME</span>
+              </div>
+            </a>
+          </li>
+          <li style="margin-top:8px; background-color:black; border-radius:20px;" class="nav-item">
+            <a style="color: #ffffff; font-family:verdana;" class="nav-link" href="/profile">
+              <div class="cart-wrapper">
+                <span class="cart-label">PROFILE</span>
+              </div>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a style="color: #ffffff; font-family:verdana;" class="nav-link" href="/cart">
+              <div class="cart-wrapper">
+                <span class="cart-label">CART</span>
+                <p style="margin-top:0.1px;" class="class140">{{q}}</p>
+              </div>
+            </a>
+          </li>
+          <li style="margin-top:8px;" class="nav-item">
+            <a style="color: #ffffff; font-family:verdana;" class="nav-link" href={% url "sapp:orderstatus" %}>
+              <div class="cart-wrapper">
+                <span class="cart-label"> CURRENT ORDERS</span>
+              </div>
+            </a>
+          </li>
+          {% if loc is none %}
+          <li style="margin-top:8px;" class="nav-item">
+            <a style="color: orange; font-family:verdana;" class="nav-link" href={% url "sapp:address" %}>
+              <div class="cart-wrapper">
+                <span class="cart-label">ADDRESS</span>
+              </div>
+            </a>
+          </li>
+          {% endif %}
+        </ul>            
+      </div>
+    </div>
+  </nav><br><br><br>
+  <div>
+    <table class="table table-bordered" style="width:50%;margin-left:25%;margin-top:5%;">
+      <tbody>
+          <tr>
+            <th scope="col">UserName</th>
+            <td>{{user_dat.username}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Email</th>
+            <td>{{user_dat.email}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Phone</th>
+            <td>{{user_dat.phone}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Your Address</th>
+            <td>{% if loc %}{{loc.streetname}},{{loc.villagecity}},{{loc.state}},{{loc.country}},{{loc.pincode}}    {% if lrn %}<a href="{% url 'sapp:address2' %}"><button style="width:80px;" class="add-cart class12" type="submit">Change</button></a><br>{% endif %}{% endif %}{% if loc is none %}<a href="{% url 'sapp:address3' %}"><button class="add-cart class12" type="submit">Give your address</button></a><br>{% endif %}</td>
+          </tr>
+      </tbody>
+    </table>
+  </div> 
+  <h1 style="text-align:center">Order History</h1>
+  <!--<div class="container">
+    {% for image_url in image_urls %}
+    <div class="card">
+      <img src="{{ image_url }}" class="image">
+      <div class="details">
+        {% for ord in orde %}
+        <p class="dish"><b style="color:green;">Dish:</b> {{ ord.dish_name }}</p>
+        <p class="quantity"><b style="color:green;">Quantity:</b> {{ ord.quantity }}</p>
+        <p class="date"><b style="color:green;">Date of order:</b> {{ ord.date_of_order }}</p>
+        <p class="price"><b style="color:green;">Final Price:</b> {{ ord.finalpricee }}</p><br>
+        {% for dish,dish_id in pre.items %}
+        {% if dish_id != ord.id %}<p class="review"><button onclick="review({{ord.id}})" style="background-color:orange; width:200px; border-radius:10px; border-width:1px;">Review</button></p>{% endif %}
+        {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>-->  
+  
+  <div style="margin:0px,auto;" class="container mt-5"> <!-- Added Bootstrap container -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"> <!-- Utilizing Bootstrap grid classes for columns and rows -->
+      {% for ord in orde %}
+      <div class="col"> <!-- Each order card is placed inside a column -->
+        <div class="card">
+          <!-- Order details -->
+          {% for dish,image in group.items %}
+            {% if dish == ord.dish_name|stringformat:"s" %}
+              <img class="" style="height:300px;" src="{{ image }}">
+            {% endif %}
+          {% endfor %}
+          <p class="dish"><b style="color:green;">Order-Id:</b> {{ ord.id }}</p>
+          <p class="dish"><b style="color:green;">Dish:</b> {{ ord.dish_name }}</p>
+          <p class="quantity"><b style="color:green;">Quantity:</b> {{ ord.quantity }}</p>
+          <p class="date"><b style="color:green;">Date of order:</b> {{ ord.date_of_order }}</p>
+          <p class="price"><b style="color:green;">Final Price:</b> {{ ord.finalpricee }}</p><br>
+          {% for dish,dish_id in pre.items %}
+            {% if rt %}
+              {% if dish_id == ord.id %}<p class="review"><button onclick="review({{ord.id}})" style="background-color:orange; width:200px; border-radius:10px; border-width:1px;">Review it</button></p>{% endif %}
+            {% endif %}
+            {% for use,ords in re.items %}
+              {% if not ord in ords or  ords is none %}{% if dish_id == ord.id %}<p class="review"><button onclick="review({{ord.id}})" style="background-color:orange; width:200px; border-radius:10px; border-width:1px;">Review it</button></p>{% endif %}{% endif %}
+              {% if ord in ords %}{% if dish_id == ord.id %}<h6 class="review">{% for us,ors in r.items %}{% for res,poi in ors.items %}{% if res.id == ord.id %}<p><b style="color:green;">Your Review Points For This Order:</b>{{poi}}</p>{% endif %}{% endfor %}{% endfor %}</h6>{% endif %}{% endif %}
+            {% endfor %}
+          {% endfor %}
+          <a class="review" href="{% url 'sapp:add_to_cart' ord.dish_name.dish_code %}"><button style="background-color: orange; width: 200px; border-radius: 10px; border-width: 1px;">Reorder</button></a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+  <div id="review" style="text-align:center;" class="modal">
+    <div class="form-containers">
+        <span class="close" onclick="closeModa()">&times;</span><br><br>
+        <form method="post" action="{% url "sapp:review" %}">
+        {% csrf_token %}
+          <label>orderid:</label><br>
+          <input type="number" name="orderid" id="orderid" readonly></input><br>
+          <!--<label>user:</label><br>
+          <input type="text" name="user" id="user"></input><br>
+          <label>dish:</label><br>
+          <input type="text" name="dish" id="dish"></input><br>-->
+          <label>Points:</label><br>
+          <div class="radio-container">
+            <input type="radio" name="point" id="point1" value="1">1</input>
+            <input type="radio" name="point" id="point2" value="2">2</input>
+            <input type="radio" name="point" id="point3" value="3">3</input>
+            <input type="radio" name="point" id="point4" value="4">4</input>
+            <input type="radio" name="point" id="point5" value="5">5</input>
+          </div><br>
+          <label>Complaint:</label><br>
+          <textarea type="text" name="comp" id="comp">nothing</textarea><br><br>
+          <input type="submit" value="Submit">
+        </form>
+    </div>
+  </div>
+  <script>
+    function review(id){
+      var orderidInput = document.getElementById('orderid');
+      orderidInput.value = id; // Fill orderid input with the order ID
+      var deliverb=document.getElementById('review');
+      deliverb.style.display='block';
+    }
+    function closeModa() {
+      var deliveryBoysModa = document.getElementById('review');
+      deliveryBoysModa.style.display = 'none';
+    }
+  </script>
+</body>
+</html>

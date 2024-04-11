@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js" integrity="sha384-MQ93GR66B00ZXjt0YO5KlohRA5SY2XofLueZrj5k8l8eJM1f6jvflBduRdLpmfc" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@700&display=swap" rel="stylesheet">
+    <title>Home</title>
+    <style>
+        :root { scroll-behavior: smooth; }
+        .stt {
+            position: fixed;
+            left: 1rem;
+            bottom: 1rem;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background: rgb(128, 128, 255) url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath fill='currentColor' d='M352 352c-8.188 0-16.38-3.125-22.62-9.375L192 205.3l-137.4 137.4c-12.5 12.5-32.75 12.5-45.25 0s-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25C368.4 348.9 360.2 352 352 352z'%3E%3C/path%3E%3C/svg%3E") center no-repeat;
+            box-shadow: 0 0.25rem 0.5rem 0 gray;
+            opacity: 0.7;
+        }
+        .stt:hover {
+          opacity: 0.8;
+        }
+        .stt:focus {
+          opacity: 0.9;
+        }
+        .stt:active {
+          opacity: 1;
+        }
+        .navbar-custom {
+            height:100px;
+        }
+        .class100{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color:wheat;
+        }
+        
+        .class300{
+            margin-left: 78%;
+        }
+        
+        .class400{
+            width:30%;
+            margin-right:100px;
+        }
+        
+        .bg-container {
+            background-image: url('/static/swiggyback4.jpg');
+            background-size: cover;
+            height: 95vh;
+            border-top-right-radius:20px;
+            border-top-left-radius:20px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;        
+        }        
+        .navbar{
+            padding:10px;
+            border-radius: 10px;
+        }
+        
+        .class{
+            margin-top: 50px;
+        }
+        
+        .class1{
+            margin-top:30px;
+        }
+        
+        .class2{
+            text-align: center;
+            border:red;
+            border-radius: 10px;
+        }
+        
+        .class3{
+            border-top-right-radius:50px;
+            border-bottom-left-radius:50px;
+            width:295px;
+            height:200px;
+            padding-left:4.5px;
+            padding-top:4.5px;
+        }
+        .class4{
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            padding-left:10px;
+            color:green;
+        }
+        
+        .class5{
+           font-family: 'Times New Roman', Times, serif; 
+           color:red;
+        }
+        
+        .class6{
+            text-align: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        
+        .class7{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        
+        .top{
+            position:relative;
+        }
+        
+        .class8{
+            text-align:center;
+        }
+        
+        .class2:hover{
+            background-color:skyblue;
+        }
+        
+        .class12{
+            color:aliceblue;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align:center ;
+            height:40px;
+            background-color: orange;
+            border-radius: 10px;
+        }
+        
+        .popup-container {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            background-color: #a09068;
+            padding: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+          }
+          .goto-cart-link {
+            text-align: center;
+            margin-top: 10px;
+          }
+        
+          .class14{
+            color:black;
+            text-decoration: none;
+          }
+    </style>
+</head>
+<body>
+    <div class="bg-container">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-custom">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse class300" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active class100" aria-current="page" href="/signup">SIGNUP</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link class100" href="/signin">SIGNIN</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle class100" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                MENU
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#veg">VEG</a></li>
+                                <li><a class="dropdown-item" href="#non-veg">NON-VEG</a></li>
+                                <li><a class="dropdown-item" href="#">BEVERAGES</a></li>
+                                <li><a class="dropdown-item" href="#veg-starter">VEG STARTERS</a></li>
+                                <li><a class="dropdown-item" href="#non-veg-starter">NONVEG STARTERS</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="d-flex justify-content-end mt-3">
+            <img class="class400" src='{% static "foodies-high-resolution-logo-white-transparent.png" %}'>
+        </div>
+    </div>
+    <a href='#' class="stt" title="scroll to top"></a>
+    <div>
+        <hr class="class1">
+        <div id="non-veg-starter">
+            <h2 style="text-align:center">Non-veg Starters</h2>
+            <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/chickenlollipops.jpg">
+                            <h6 class="class6">Chicken lollipops</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Fried chicken shaped as lollipops mixed with extra spice that can be shared with 2 persons.</p>                   
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/chicken-65.jpg">
+                            <h6 class="class6">Chicken 65</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Fried chicken mixed with extra spice and flavours that can be shared with 2 persons.</p> 
+                            
+                        </div>
+                    </div>   
+                  </div>
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/Butter-Chicken-Wings.jpg">
+                            <h6 class="class6"> ButterChicken Wings</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Fried chicken curry mixed with extra spice and butter that can be shared with 2 persons.</p> 
+                            
+                        </div>
+                    </div>   
+                    
+                  </div>
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/chickenlegpiece.webp">
+                            <h6 class="class6"> Leg Pieces</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark> 4 Fried chicken leg pieces mixed with extra spice that can be shared with 2 persons.</p> 
+                            
+                        </div>
+                    </div>   
+                  </div>
+                </div>
+            </div><br><br>
+            <div>       
+            </div>
+            
+            <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/chillimutton.jpeg">
+                            <h6 class="class6">Chilli mutton</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Fried mutton pieces mixed with extra spice that can be shared with 2 persons.</p> 
+                            
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/chilliprawns.jpeg">
+                            <h6 class="class6">Chilli Prawns</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Fried Prawns pieces mixed with extra spice that can be shared with 2 persons.</p> 
+                            
+                        </div>
+                    </div>   
+                  </div>
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/apollofish.jpeg">
+                            <h6 class="class6"> Apollo Fish</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>apollo fish curry  mixed with extra spice that can be shared with 2 persons.</p> 
+                            
+                        </div>
+                    </div>   
+                    
+                  </div>
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/fishfry.jpeg">
+                            <h6 class="class6"> Fish Fry</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Fried fish pieces mixed with extra spice that can be shared with 2 persons.</p> 
+                        </div>
+                    </div>   
+                    
+                  </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <br>
+        <div id="veg-starter">
+            <h2 style="text-align:center">Veg Starters</h2>
+            <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/chillipanner.jpeg">
+                            <h6 class="class6">Chilli Paneer</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>fried paneer with lots of spice in it just like chilli chicken that can be shared with 2 persons..</p> 
+                            
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/paneer65.jpeg">
+                            <h6 class="class6">Paneer 65</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Fried panner mixed with extra spice just like chicken 65 that can be shared by 2 persons</p> 
+                            
+                        </div>
+                    </div>   
+                  </div>
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/mushroom65.jpeg">
+                            <h6 class="class6">Mushroom 65</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Fried mushrooms mixed with extra spice that can be shared with 2 persons.</p>                
+                            
+                        </div>
+                    </div>   
+                    
+                  </div>
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/vegmunchurian.jpeg">
+                            <h6 class="class6">Veg Munchurian</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>specially prepared munchurian with extra spice that can be shared by 3 persons. </p>                           
+                        </div>
+                    </div>   
+                  </div>
+                </div>
+            </div><br><br>
+        </div>
+        <hr>
+        <div id="non-veg">
+            <h2 style="text-align:center">Non-Veg Biryani</h2>
+            <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/chickendumbiryani.jpeg">
+                            <h6 class="class6">Chicken Dum Biryani</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Steemed basmati Rice mixed with specially prepared boiled chicken pieces that will be sufficient for 1 person. </p>                
+                            
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/chickenfrypiece.jpeg">
+                            <h6 class="class6">Chicken Fry Piece Biryani</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Steemed basmati Rice mixed with specially prepared fried chicken pieces that will be sufficient for 1 person. </p>                
+                            
+                        </div>
+                    </div>   
+                  </div>
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/chickenmugalaih.jpeg">
+                            <h6 class="class6">Chicken Mugalaih Biryani</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Steemed basmati Rice mixed with specially prepared chicken curry that will be sufficient for 1 person. </p>                
+                            
+                        </div>
+                    </div>   
+                    
+                  </div>
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/specialchickenbiryani.jpeg">
+                            <h6 class="class6">Special Chicken Biryani</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Steemed basmati Rice given with specially prepared chicken curry pack that will be sufficient for 1 person. </p>                
+                            
+                        </div>
+                    </div>   
+                  </div>
+                </div>
+            </div><br><br>
+            <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/muttonbiryani.jpeg">
+                            <h6 class="class6">Mutton Biryani</h6>
+                            <p class="class4">North Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Steemed basmati Rice mixed with specially prepared mutton placed all around the plate that will be sufficient for 1 person. </p>                                        
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/prawnsbiryani.jpeg">
+                            <h6 class="class6">Prawns Biryani</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Steemed basmati Rice mixed with specially prepared prawns placed all around the plate that will be sufficient for 1 person. </p>                 
+                        </div>
+                    </div>   
+                  </div>
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/muttonmugalaihbiryani.jpeg">
+                            <h6 class="class6">Mutton Mugalaih Biryani</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Steemed basmati Rice mixed with special mutton pieces placed all around the plate that will be sufficient for 1 person. </p>
+                        </div>
+                    </div>   
+                    
+                  </div>
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/mixednonveg.jpeg">
+                            <h6 class="class6">Mixed Biryani</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Steemed basmati Rice mixed with different types of non veg pieces that will be sufficient for 1 person. </p>
+                        </div>
+                    </div>   
+                  </div>
+                </div>
+            </div><br><br>
+        </div>
+        <hr>
+        <div id="veg">
+            <h2 style="text-align:center">Veg Biryani</h2>
+            <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/vegbiryani.jpeg">
+                            <h6 class="class6">Veg Biryani</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Steemed basmati Rice mixed with masala and different types of vegetables that will be sufficient for 1 person. </p>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/kajupaneer.jpeg">
+                            <h6 class="class6">Kaju Paneer Biryani</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Steemed basmati Rice mixed with masala and deeply boiled kaju panner that will be sufficient for 1 person. </p>
+                        </div>
+                    </div>   
+                  </div>
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/vegfriedrice.jpeg">
+                            <h6 class="class6">Veg Fried Rice</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Fried rice mixed with different types of vegetables and additional flavours that will be sufficient for 1 person.</p>
+                        </div>
+                    </div>   
+                    
+                  </div>
+                  <div class="col">
+                    <div class="class2">
+                        <div>
+                            <img class="class3" src="/static/specialpaneerbiryani.jpeg">
+                            <h6 class="class6">Special Paneer Biryani</h6>
+                            <p class="class4">South Indian</p>
+                            <h6 class="class8">150 per pack</h6><hr>
+                            <p class="class4"><mark>What's inside:</mark>Steemed Rice mixed with masala and deeply boiled with soft panner that will be sufficient for 1 person. </p>
+                        </div>
+                    </div>   
+                  </div>
+                </div>
+            </div><br><br>
+        </div>
+        <hr>
+</body>
+</html>

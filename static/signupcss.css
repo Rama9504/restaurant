@@ -1,0 +1,72 @@
+.class{
+    text-align:center;
+    border-radius:0px;
+    background-color:black;
+    color:yellow;
+    width:150px;
+    height:35px;
+}
+
+.class1{
+    height:30px;
+    margin-top:30px;
+    border-radius:10px;
+    width:200px;
+}
+
+body{
+    background-attachment: scroll;
+    background-size: 100%;
+    background-image: url(/static/signup_background.jpg);
+}
+
+.class2{
+    height:25%;
+    background-color: silver;
+    opacity:0.8;
+    margin-top:300px;
+    margin-left:590px;
+    border-style: solid;
+    border-color: orange;
+    border-radius:5px;
+    width:30%;
+    padding:5px;
+}
+
+.class3{
+    color:rgb(143, 11, 11);
+    text-align:left;
+}
+
+.class4{
+    border-radius:10px;
+    height:30px;
+    width:200px;
+}
+
+.class5{
+    text-align:center;
+    margin:10px;
+}
+
+.class6{
+    border-radius:10px;
+    height:30px;
+    width:200px;
+}
+
+.class7{
+    border-radius:10px;
+    height:30px;
+    width:100px;
+}
+
+.class8{
+    width:20px;
+    height:20px;
+    float: right;
+}
+
+.class9{
+    float:right;
+}
