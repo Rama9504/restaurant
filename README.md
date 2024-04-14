@@ -1,5 +1,7 @@
-This is a django framework based web application in which i implemented various functionalities of different actors like customers,restaurant admin,deliveryboys.This is a kind of website where all three can simultaneously use the website doing there respective functionalities i provided for them. it is like a complete cycle of an user registering to the website and ordering any dish he/she wants and the admin of the website will assign the available delivery boy and he will get the notification of assigned order to him/her. he will pick it and then he delivers to the address the user mentioned during placing of the order.
-Now coming to individual apps functionalities, There are 3 apps in this project and they are 1)Sapp 2)Adminapp 3)Deliveryapp . Lets talk about Sapp
-1)SAPP:
-      This app is for the customers which take care of all the functionalities a user can have in his/her UI 
+This Django-based web application encompasses distinct functionalities tailored for various user roles: customers, restaurant admins, and delivery personnel, facilitating seamless interaction among them. The application orchestrates a comprehensive user journey, from registration to order placement and delivery confirmation.
 
+The "Sapp" app caters to customer needs, managing essential backend processes such as registration, email verification, login, cart management, address submission, order placement, and real-time order tracking. Customers can review their ordered items and modify their delivery address before finalizing the order.
+
+On the other hand, the "Adminapp" empowers restaurant administrators to oversee operations efficiently. They have control over assigning delivery personnel, managing menu items (including availability, prices, and discounts), adding/removing delivery personnel, and adjusting their availability based on demand.
+
+Lastly, the "Deliveryapp" serves delivery personnel, providing them with dedicated accounts. They receive order notifications, execute delivery tasks, and confirm delivery by submitting a verification code sent to the customer's registered email. If the code matches, the order is marked as delivered; otherwise, the correct code must be entered for validation.
