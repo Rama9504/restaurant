@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'verify_email.apps.VerifyEmailConfig',
+    #'verify_email.apps.VerifyEmailConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
